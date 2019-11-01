@@ -56,7 +56,7 @@ ILOUSERCUTCALLBACK6(cut, NumVarMatrix, x, IloNumVarArray, w, int, nVertex, doubl
       verifica_corte+= residual[i][j];
     } 
 
-      cout<< "H : " << h << "e verifica_corte eh: "<< verifica_corte<< endl;
+      //cout<< "H : " << h << "e verifica_corte eh: "<< verifica_corte<< endl;
     if(h>2 && verifica_corte>1+PRECISAO){
       IloExpr corte(env);
       
@@ -206,7 +206,6 @@ int main(int argc, char *argv[])
   cplex.setParam(IloCplex::HeurFreq, -1);     // heuristicas primais do CPLEX, -1-desliga 0-liga
     
 
-  cout <<"wtf?"<<endl;
   // Solve the model and display solution.
   // Otimiza
     try

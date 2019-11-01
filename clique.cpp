@@ -40,22 +40,48 @@ int get_num_neighbourg_in_clique(list<int> &N, list<int> &clique){
 
 int select_vertex(list<int> *edge, list<int> &clique, int *process, double **residual, int cor){
    list<int>::iterator it;
-   double max =0;
+   double fmax =0;
+   double fmin =10000000;
    int vertex = -1;
+   list<int> LC;
+   srand(1);
    //int max =0;
+   LC.clear();
    for(it = clique.begin(); it != clique.end(); it++)
    {
       int u = *it;
       if(process[u]==0){
-         double x =2*residual[u][cor] * get_num_neighbourg_in_clique(edge[u], clique);
+         double x = residual[u][cor] * get_num_neighbourg_in_clique(edge[u], clique);
        //  int x = get_num_neighbourg_in_clique(edge[u], clique);
-         if(x>max){
-            max = x;
-            vertex = u;
+         if(x>fmax){
+            fmax = x;
+         }
+         if(x<fmin){
+            fmin = x;
          }
       }
-   }  
+   }
 
+   for(it = clique.begin(); it != clique.end(); it++)
+   {
+      int u = *it;
+      if(process[u]==0){
+         double x = residual[u][cor] * get_num_neighbourg_in_clique(edge[u], clique);
+         if(x >= fmin + (fmax-fmin)*0.9)
+            LC.push_back(u);
+      }
+   }
+   if(LC.size()>0){
+      int random_pos = rand()%LC.size();
+      int pos = 0;
+      while(pos < random_pos)
+      {
+        LC.pop_front();
+        pos++;
+      }
+
+      vertex = LC.front();
+   }
    return vertex;
 }
 
