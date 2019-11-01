@@ -1,0 +1,6 @@
+make
+./pc <nomedoarquivo.pc>
+
+se o parametro não for informado, será utilizado o arquivo teste.pc
+
+Os exemplos de saída estão nos arquivos *.output
