@@ -8,8 +8,8 @@ ILOSTLBEGIN
 
 typedef IloArray<IloNumVarArray> NumVarMatrix;
 
-//ILOLAZYCONSTRAINTCALLBACK5(cut, NumVarMatrix, x, IloNumVarArray, w, int, nVertex, double**, residual)
-ILOUSERCUTCALLBACK5(cut, NumVarMatrix, x, IloNumVarArray, w, int, nVertex, double**, residual, list<int> *, edge)
+//ILOLAZYCONSTRAINTCALLBACK5(cut, NumVarMatrix, x, IloNumVarArray, w, int, nVertex, double**, residual, list<int> *, edge)
+ILOUSERCUTCALLBACK6(cut, NumVarMatrix, x, IloNumVarArray, w, int, nVertex, double**, residual, list<int> *, edge, int *, numc)
 {
   // x        -> vetor das variaveis do problema
   // dim      -> dimensao do problema (numero de cidades)
@@ -19,8 +19,7 @@ ILOUSERCUTCALLBACK5(cut, NumVarMatrix, x, IloNumVarArray, w, int, nVertex, doubl
   
   IloEnv env  = getEnv();
   bool   DEPU = true;
-  int numc=0;
-
+  
   // cria vetor da solucao corrente fracionaria 
   for(int i=0; i < nVertex; i++) {
     for(int j=0; j < nVertex; j++) {
@@ -41,32 +40,24 @@ ILOUSERCUTCALLBACK5(cut, NumVarMatrix, x, IloNumVarArray, w, int, nVertex, doubl
   // ******************** metodo para corte minimo *******************************
 
   list<int> clique;
-  for(int j=0; j<nVertex;j++){
-    clique.clear();
-
+  for(int j=0; j<nVertex && getValue(w[j])>0 +PRECISAO;j++){
+    clique.clear(); 
 
     for(int i=0; i<nVertex; i++){
       clique.push_back(i);
     }
 
     list<int>::iterator it;
-    for(it = clique.begin(); it != clique.end(); it++){
-      cout<<*it<<endl;
-    }
-   
     int h = heuristic(edge, clique, nVertex, residual, j);
    
-    for(it = clique.begin(); it != clique.end(); it++){
-    cout<<*it<<endl;
-    }
     double verifica_corte=0;
     int i;
     for(it = clique.begin(); it != clique.end(); it++){
       i = *it;
       verifica_corte+= residual[i][j];
-    }
-
-    if(h>2 && verifica_corte>1){
+    } 
+    if(h>2 && verifica_corte>1+PRECISAO){
+      cout<< "H : " << h << "e verifica_corte eh: "<< verifica_corte<< endl;
       IloExpr corte(env);
       
       for(it = clique.begin(); it != clique.end(); it++) {
@@ -74,14 +65,14 @@ ILOUSERCUTCALLBACK5(cut, NumVarMatrix, x, IloNumVarArray, w, int, nVertex, doubl
         corte += x[i][j];
       }
       cout<<"aqui?"<<endl;
-      add(corte + PRECISAO<=1).end();
+      add(corte + PRECISAO<=1+PRECISAO).end();
       // libera memoria
 
       cout<<"eae"<<endl;
       corte.end();
     }
   }
-  numc = numc + 1;
+  *numc = *numc + 1;
  /* if(h>2 && verifica_corte>1){
     // constroi corte
     
@@ -114,7 +105,7 @@ ILOUSERCUTCALLBACK5(cut, NumVarMatrix, x, IloNumVarArray, w, int, nVertex, doubl
   double lb     = getBestObjValue();       // retorna o melhor limite dual
   double rlx    = getObjValue();           // quando chamada dentro do callback, retorna o valor da relaxacao do noh
   double nNodes = getNremainingNodes();    // retorna o numero restante de nos a serem analisados
-  cout<<"--- USER CUT:"<<"relax="<<rlx<<"\t bounds="<<lb<<"<->"<<ub<<"\t n_rest="<<nNodes<<"\t Ucuts="<<numc<<endl;
+  cout<<"--- USER CUT:"<<"relax="<<rlx<<"\t bounds="<<lb<<"<->"<<ub<<"\t n_rest="<<nNodes<<"\t Ucuts="<<*numc<<endl;
 
 }
 
@@ -192,7 +183,7 @@ int main(int argc, char *argv[])
   double **residual = new double*[nVertex];               // grafo residual usado no corte
   for(int i=0; i < nVertex; i++)
     residual[i] = new double[nVertex];
-
+  int numc=0;
   // Create a solver instance and extract the model to it.
   IloCplex cplex(env);
   
@@ -201,7 +192,7 @@ int main(int argc, char *argv[])
   // -- USER CUTS --
   // Sao cortes que nao eliminam nenhuma solucao viavel (e.g., cortes que eliminam solucoes fracionarias)
   // mas que se nao inseridos nao inviabilizam a corretude do modelo
-  cplex.use(cut(env, x, w, nVertex, residual, edge)); 
+  cplex.use(cut(env, x, w, nVertex, residual, edge, &numc)); 
   // *****************************************************************************
   // Parametros do CPLEX
   cplex.setParam(IloCplex::WorkMem,1024*2);   //tamanho de RAM utilizada maxima
@@ -228,7 +219,7 @@ int main(int argc, char *argv[])
        {
    cout << e;
        }
-  free(residual);
+
   cplex.out() << "Solution status: " << cplex.getStatus() << endl;
   cplex.out() << "Optimal value: " << cplex.getObjValue() << endl;
   env.end();
