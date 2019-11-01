@@ -57,18 +57,14 @@ ILOUSERCUTCALLBACK6(cut, NumVarMatrix, x, IloNumVarArray, w, int, nVertex, doubl
       verifica_corte+= residual[i][j];
     } 
     if(h>2 && verifica_corte>1+PRECISAO){
-      cout<< "H : " << h << "e verifica_corte eh: "<< verifica_corte<< endl;
       IloExpr corte(env);
       
       for(it = clique.begin(); it != clique.end(); it++) {
         i = *it;
         corte += x[i][j];
       }
-      cout<<"aqui?"<<endl;
       add(corte + PRECISAO<=1+PRECISAO).end();
       // libera memoria
-
-      cout<<"eae"<<endl;
       corte.end();
     }
   }
