@@ -50,7 +50,6 @@ int select_vertex(list<int> *edge, list<int> &clique, int *process, double **res
          double x =residual[u][cor];
 
          if(x>max){
-            //cout << "cor: " << cor << " vertice: "<< u<< " valor: " << x<<endl;
             max = x;
             vertex = u;
          }
@@ -94,14 +93,14 @@ int heuristic(list<int> *edge, list<int> &clique, int nVertex, double **residual
    for(int i=0;i<nVertex; i++){
       process[i] =0;
    }
-
    while(v != -1){
       v = select_vertex(edge, clique, process, residual, cor);
-      process[v]=1;
-
-      remove_from_clique(edge[v], clique, v);
-      
+      if(v!=-1){
+         process[v]=1;
+         remove_from_clique(edge[v], clique, v);
+      }      
    }
+
    return clique.size();         
 }
 
