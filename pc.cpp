@@ -16,7 +16,6 @@ ILOUSERCUTCALLBACK6(cut, NumVarMatrix, x, IloNumVarArray, w, int, nVertex, doubl
   // residual -> armazena grafo com a solucao corrente
   // cutset   -> conjunto S a ser encontrado
   // numc     -> contador de numero de cortes gerados
-  
   IloEnv env  = getEnv();
   bool   DEPU = true;
   
@@ -56,6 +55,8 @@ ILOUSERCUTCALLBACK6(cut, NumVarMatrix, x, IloNumVarArray, w, int, nVertex, doubl
       i = *it;
       verifica_corte+= residual[i][j];
     } 
+
+      cout<< "H : " << h << "e verifica_corte eh: "<< verifica_corte<< endl;
     if(h>2 && verifica_corte>1+PRECISAO){
       IloExpr corte(env);
       
@@ -65,10 +66,11 @@ ILOUSERCUTCALLBACK6(cut, NumVarMatrix, x, IloNumVarArray, w, int, nVertex, doubl
       }
       add(corte + PRECISAO<=1+PRECISAO).end();
       // libera memoria
+      *numc = *numc + 1;
       corte.end();
     }
   }
-  *numc = *numc + 1;
+  
  /* if(h>2 && verifica_corte>1){
     // constroi corte
     
