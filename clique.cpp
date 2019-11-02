@@ -51,12 +51,13 @@ int select_vertex(list<int> *edge, list<int> &clique, int *process, double **res
    {
       int u = *it;
       if(process[u]==0){
-         double x = residual[u][cor] * get_num_neighbourg_in_clique(edge[u], clique);
+         int nc = get_num_neighbourg_in_clique(edge[u], clique);
+         double x = (residual[u][cor]+1) * nc;
        //  int x = get_num_neighbourg_in_clique(edge[u], clique);
-         if(x>fmax){
+         if(x>fmax && nc>1){
             fmax = x;
          }
-         if(x<fmin){
+         if(x<fmin && nc>1){
             fmin = x;
          }
       }
@@ -66,8 +67,9 @@ int select_vertex(list<int> *edge, list<int> &clique, int *process, double **res
    {
       int u = *it;
       if(process[u]==0){
-         double x = residual[u][cor] * get_num_neighbourg_in_clique(edge[u], clique);
-         if(x >= fmin + (fmax-fmin)*0.9)
+         int nc = get_num_neighbourg_in_clique(edge[u], clique);
+         double x = (residual[u][cor]+1) * nc;
+         if(x >= fmin + (fmax-fmin)*0.8 && nc>1)
             LC.push_back(u);
       }
    }
