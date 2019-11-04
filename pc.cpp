@@ -195,7 +195,7 @@ int main(int argc, char *argv[])
   // Parametros do CPLEX
   cplex.setParam(IloCplex::WorkMem,1024*2);   //tamanho de RAM utilizada maxima
   cplex.setParam(IloCplex::NodeFileInd, 2);   //quando a RAM acaba, 1-guarda nos na memoria e compactado 2-guarda os nos em disco 3-guarda nos em disco e compactado
-  cplex.setParam(IloCplex::TiLim, 3600);      // tempo limite
+  cplex.setParam(IloCplex::TiLim, 9000);      // tempo limite
   cplex.setParam(IloCplex::Threads, 1);       // Numero de threads
   cplex.setParam(IloCplex::MIPInterval, 100); // Log a cada N nos
   //cplex.setOut(env.getNullStream());          // Desabilitando saida do cplex
