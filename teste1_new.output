@@ -1,0 +1,93 @@
+CPXPARAM_Preprocessing_Presolve                  0
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Strategy_File                       2
+CPXPARAM_MIP_Interval                            100
+CPXPARAM_MIP_Strategy_HeuristicFreq              -1
+CPXPARAM_TimeLimit                               9000
+CPXPARAM_MIP_Limits_CutsFactor                   0
+Clique table members: 7749.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: traditional branch-and-cut.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.69 sec. (694.41 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap         Variable B NodeID Parent  Depth
+
+      0     0        2.0000    50                      2.0000     5768         
+--- USER CUT:relax=2	 bounds=2<->1e+75	 n_rest=1	 Ucuts=2
+      0     0        2.0000   182                     User: 2     5846         
+--- USER CUT:relax=3.2	 bounds=2<->1e+75	 n_rest=1	 Ucuts=4
+      0     0        3.2000   131                     User: 2     6932         
+--- USER CUT:relax=3.2	 bounds=3.2<->1e+75	 n_rest=1	 Ucuts=6
+      0     0        3.2000   298                     User: 2     7204         
+--- USER CUT:relax=3.2	 bounds=3.2<->1e+75	 n_rest=1	 Ucuts=8
+      0     0        3.2000   342                     User: 2     7363         
+--- USER CUT:relax=3.2	 bounds=3.2<->1e+75	 n_rest=1	 Ucuts=10
+      0     0        3.2000   100                     User: 2     7524         
+--- USER CUT:relax=3.2	 bounds=3.2<->1e+75	 n_rest=1	 Ucuts=12
+      0     0        3.2000   102                     User: 2     7681         
+--- USER CUT:relax=3.2	 bounds=3.2<->1e+75	 n_rest=1	 Ucuts=14
+      0     0        3.2000   105                     User: 2     7774         
+--- USER CUT:relax=3.2	 bounds=3.2<->1e+75	 n_rest=1	 Ucuts=16
+      0     0        3.2000   104                     User: 2     7973         
+--- USER CUT:relax=3.2	 bounds=3.2<->1e+75	 n_rest=1	 Ucuts=18
+      0     0        3.2000   103                     User: 2     8214         
+--- USER CUT:relax=3.2	 bounds=3.2<->1e+75	 n_rest=1	 Ucuts=19
+      0     0        3.2000   102                     User: 1     8301         
+--- USER CUT:relax=3.2	 bounds=3.2<->1e+75	 n_rest=1	 Ucuts=20
+      0     0        3.2000   104                     User: 1     8381         
+--- USER CUT:relax=3.2	 bounds=3.2<->1e+75	 n_rest=1	 Ucuts=20
+--- USER CUT:relax=3.2	 bounds=3.2<->1e+75	 n_rest=1	 Ucuts=20
+      0     2        4.0000    46                      4.0000     8858                                 0             0
+Elapsed time = 4.69 sec. (4887.03 ticks, tree = 0.01 MB, solutions = 0)
+--- USER CUT:relax=4	 bounds=4<->1e+75	 n_rest=2	 Ucuts=22
+--- USER CUT:relax=4.4	 bounds=4<->1e+75	 n_rest=2	 Ucuts=25
+--- USER CUT:relax=4.4	 bounds=4<->1e+75	 n_rest=2	 Ucuts=27
+--- USER CUT:relax=4.4	 bounds=4<->1e+75	 n_rest=2	 Ucuts=30
+--- USER CUT:relax=4.4	 bounds=4<->1e+75	 n_rest=2	 Ucuts=33
+--- USER CUT:relax=4.4	 bounds=4<->1e+75	 n_rest=2	 Ucuts=36
+--- USER CUT:relax=4.4	 bounds=4<->1e+75	 n_rest=2	 Ucuts=39
+--- USER CUT:relax=4.4	 bounds=4<->1e+75	 n_rest=2	 Ucuts=42
+--- USER CUT:relax=4.4	 bounds=4<->1e+75	 n_rest=2	 Ucuts=45
+--- USER CUT:relax=4.4	 bounds=4<->1e+75	 n_rest=2	 Ucuts=46
+--- USER CUT:relax=4.4	 bounds=4<->1e+75	 n_rest=2	 Ucuts=47
+--- USER CUT:relax=4.4	 bounds=4<->1e+75	 n_rest=2	 Ucuts=49
+--- USER CUT:relax=4.4	 bounds=4<->1e+75	 n_rest=2	 Ucuts=50
+--- USER CUT:relax=4.4	 bounds=4<->1e+75	 n_rest=2	 Ucuts=51
+--- USER CUT:relax=4.4	 bounds=4<->1e+75	 n_rest=2	 Ucuts=51
+--- USER CUT:relax=4.4	 bounds=4<->1e+75	 n_rest=2	 Ucuts=51
+--- USER CUT:relax=4.4	 bounds=4<->1e+75	 n_rest=3	 Ucuts=53
+--- USER CUT:relax=4.4	 bounds=4<->1e+75	 n_rest=3	 Ucuts=54
+--- USER CUT:relax=4.5	 bounds=4<->1e+75	 n_rest=3	 Ucuts=54
+--- USER CUT:relax=4.5	 bounds=4<->1e+75	 n_rest=3	 Ucuts=54
+--- USER CUT:relax=5	 bounds=4.5<->1e+75	 n_rest=3	 Ucuts=56
+--- USER CUT:relax=5	 bounds=4.5<->1e+75	 n_rest=3	 Ucuts=57
+--- USER CUT:relax=5	 bounds=4.5<->1e+75	 n_rest=3	 Ucuts=59
+--- USER CUT:relax=5	 bounds=4.5<->1e+75	 n_rest=3	 Ucuts=60
+--- USER CUT:relax=5	 bounds=4.5<->1e+75	 n_rest=3	 Ucuts=60
+--- USER CUT:relax=5	 bounds=4.5<->1e+75	 n_rest=3	 Ucuts=60
+--- USER CUT:relax=5	 bounds=4.5<->1e+75	 n_rest=4	 Ucuts=61
+--- USER CUT:relax=5	 bounds=4.5<->1e+75	 n_rest=4	 Ucuts=63
+--- USER CUT:relax=5	 bounds=4.5<->1e+75	 n_rest=4	 Ucuts=64
+--- USER CUT:relax=5	 bounds=4.5<->1e+75	 n_rest=4	 Ucuts=65
+--- USER CUT:relax=5	 bounds=4.5<->1e+75	 n_rest=4	 Ucuts=66
+--- USER CUT:relax=5	 bounds=4.5<->1e+75	 n_rest=4	 Ucuts=66
+--- USER CUT:relax=5	 bounds=4.5<->1e+75	 n_rest=4	 Ucuts=66
+--- USER CUT:relax=5	 bounds=4.5<->1e+75	 n_rest=5	 Ucuts=66
+--- USER CUT:relax=5	 bounds=4.5<->1e+75	 n_rest=5	 Ucuts=66
+--- USER CUT:relax=5	 bounds=4.5<->1e+75	 n_rest=6	 Ucuts=67
+--- USER CUT:relax=5	 bounds=4.5<->1e+75	 n_rest=6	 Ucuts=67
+--- USER CUT:relax=5	 bounds=4.5<->1e+75	 n_rest=6	 Ucuts=67
+*     8     1      integral     0        5.0000        4.5000    21357   10.00%
+
+User cuts applied:  67
+
+Root node processing (before b&c):
+  Real time             =    4.39 sec. (4493.75 ticks)
+Sequential b&c:
+  Real time             =    3.97 sec. (4293.84 ticks)
+                          ------------
+Total (root+branch&cut) =    8.36 sec. (8787.59 ticks)
+Solution status: Optimal
+Optimal value: 5
